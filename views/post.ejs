@@ -22,6 +22,10 @@
               <a href="#">Author</a>
               on <%= post.dateCreated %>
             </span>
+            <div class="buttons mt-5">
+              <a href="/posts/edit/<%= post._id %>" class="btn btn-primary mb-3 p-0 tm-btn-animate tm-btn-download tm-icon-download"><span>Update</span></a>
+              <a href="/posts/<%= post._id %>?_method=DELETE" class="btn btn-danger mb-3 p-0 tm-btn-animate tm-btn-download tm-icon-download"><span>Delete</span></a>
+            </div>
           </div>
         </div>
       </div>

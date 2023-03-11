@@ -1,44 +1,32 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Post = require('./models/Post');
+const methodOverride = require('method-override');
+
+const postRoutes = require('./routes/postRoutes');
+const pageRoutes = require('./routes/pageRoutes');
+
 const app = express();
 
-//Database Connection
+//* Database Connection
 mongoose.connect('mongodb://127.0.0.1:27017/cleanblog-db', {
    useNewUrlParser: true,
    useUnifiedTopology: true,
 });
 
-//Template Engine
+//* Template Engine
 app.set('view engine', 'ejs');
 
-//MiddleWares 
+//* MiddleWares 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended:true }));
 app.use(express.json());
+app.use(methodOverride('_method', {
+   methods:['POST', 'GET'],
+}))
 
-app.get('/', async (req,res) => {
-   const posts = await Post.find({});
-   res.render('index', {
-      posts
-   });
-});
-app.get('/about', (req,res) => {
-   res.render('about');
-});
-app.get('/add', (req,res) => {
-   res.render('add');
-});
-app.get('/posts/:id', async (req,res) => {
-   const post = await Post.findById(req.params.id);
-   res.render('post', {
-      post
-   });
-});
-app.post('/post', async (req,res) => {
-   await Post.create(req.body);
-   res.redirect('/');
-})
+//* Routes
+app.use(postRoutes);
+app.use(pageRoutes);
 
 const port = 3000;
 app.listen(port, () => {
