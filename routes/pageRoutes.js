@@ -4,6 +4,7 @@ const route = express.Router();
 
 route.get('/about', pageController.getAboutPage);
 route.get('/add', pageController.getAddPage);
+route.get('/posts', pageController.getPostsPage);
 route.get('/posts/edit/:id', pageController.getEditPage);
 
 module.exports = route;

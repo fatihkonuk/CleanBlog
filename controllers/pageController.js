@@ -3,6 +3,12 @@ const Post = require('../models/Post');
 const getAboutPage = (req,res) => {
     res.render('about');
 }
+const getPostsPage = async (req,res) => {
+    const posts = await Post.find({}).sort('-dateCreated');
+    res.render('posts', {
+        posts
+    });
+}
 const getAddPage = (req,res) => {
     res.render('add');
 }
@@ -15,6 +21,7 @@ const getEditPage = async (req,res) => {
 
 module.exports = {
     getAboutPage,
+    getPostsPage,
     getAddPage,
     getEditPage,
 }

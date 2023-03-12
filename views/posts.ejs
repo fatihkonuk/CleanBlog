@@ -27,32 +27,22 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <% if (posts.length > 0) { %>
-          <% posts.forEach(post => { %>
-            <div class="post-preview">
-              <a href="/posts/<%= post.id %>">
-                <h2 class="post-title">
-                  <%= post.title %>
-                </h2>
-                <h3 class="post-subtitle">
-                  <%= post.detail %>
-                </h3>
-              </a>
-              <p class="post-meta">Posted by
-                <a href="#">Author</a>
-                on <%= post.dateCreated%></p>
-            </div>
-            <hr>
-          <% }) %>
-          <!-- Pager -->
-          <div class="clearfix">
-            <a class="btn btn-primary float-right" href="/posts">Older Posts &rarr;</a>
+        <% posts.forEach(post => { %>
+          <div class="post-preview">
+            <a href="/posts/<%= post.id %>">
+              <h2 class="post-title">
+                <%= post.title %>
+              </h2>
+              <h3 class="post-subtitle">
+                <%= post.detail %>
+              </h3>
+            </a>
+            <p class="post-meta">Posted by
+              <a href="#">Author</a>
+              on <%= post.dateCreated%></p>
           </div>
-        <% } else {%>
-          <div class="d-flex justify-content-center">
-            <a class="btn btn-primary" href="/add">Add New Post</a>
-          </div>
-        <% } %>
+          <hr>
+        <% }) %>
       </div>
     </div>
   </div>

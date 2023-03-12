@@ -1,7 +1,7 @@
 const Post = require('../models/Post');
 
 const getAllPosts = async (req,res) => {
-    const posts = await Post.find({}).sort('-dateCreated');
+    const posts = await Post.find({}).sort('-dateCreated').limit(3);
     res.render('index', {
         posts
     });

@@ -8,7 +8,7 @@ const pageRoutes = require('./routes/pageRoutes');
 const app = express();
 
 //* Database Connection
-mongoose.connect('mongodb://127.0.0.1:27017/cleanblog-db', {
+mongoose.connect('mongodb+srv://fatihkonuk000:LSSikuYaCZMW93lg@cluster0.us7dwug.mongodb.net/?retryWrites=true&w=majority', {
    useNewUrlParser: true,
    useUnifiedTopology: true,
 });
@@ -28,7 +28,7 @@ app.use(methodOverride('_method', {
 app.use(postRoutes);
 app.use(pageRoutes);
 
-const port = 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
